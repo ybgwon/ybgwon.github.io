@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2019/11/08/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>markdown 문법</title>
+    <url>/2019/11/07/markdown-%EB%AC%B8%EB%B2%95/</url>
+    <content><![CDATA[<h1 id="Emacs-마크다운-사용법"><a href="#Emacs-마크다운-사용법" class="headerlink" title="Emacs 마크다운 사용법"></a>Emacs 마크다운 사용법</h1><p>C-c C-s 키를 누르면 미니버퍼에 사용가능한 키들이 표시된다.<br>주로 styling text 관련 키들이 표시되고 command 관련 키들은<br>C-c C-c 명령에 의해 표시된다.</p><h2 id="링크와-이미지-삽입"><a href="#링크와-이미지-삽입" class="headerlink" title="링크와 이미지 삽입"></a>링크와 이미지 삽입</h2><p>C-c C-l, C-c C-i 키 사용</p><ul>
+<li>link</li>
+</ul><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1. </span>[<span class="string">google</span>](<span class="link">http://www.google.com</span>)</span><br><span class="line"><span class="bullet">2. </span><span class="xml"><span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.daum.net</span>&gt;</span></span></span><br><span class="line"><span class="bullet">3. </span>[<span class="string">참조링크</span>][<span class="symbol">1</span>]</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<ol>
+<li><a href="http://www.google.com" target="_blank" rel="noopener">google</a></li>
+<li><a href="http://www.daum.net" target="_blank" rel="noopener">http://www.daum.net</a></li>
+<li>[참조링크][1]</li>
+</ol>
+<ul>
+<li>image</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1. </span>절대 경로</span><br><span class="line">![<span class="string">cat</span>](<span class="link">https://ybgwon.github.io/images/cat.jpg</span>)</span><br><span class="line"><span class="bullet">2. </span>상대 경로</span><br><span class="line">![<span class="string">cat</span>](<span class="link">/images/cat.jpg</span>)</span><br><span class="line"><span class="bullet">3. </span>이미지에 링크</span><br><span class="line">[<span class="string">![naver</span>](<span class="link">/images/cat.jpg</span>)](<span class="link">http://www.naver.com</span>)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><img src="https://ybgwon.github.io/images/cat.jpg" alt="cat"></li>
+<li><img src="/images/cat.jpg" alt="cat"></li>
+<li><a href="http://www.naver.com" target="_blank" rel="noopener"><img src="/images/cat.jpg" alt="naver"></a></li>
+</ol>
+<h2 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h2><ol>
+<li>inline</li>
+</ol>
+<p>backquote (`) 하나로 감싼다.</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">이것은 인라인 코드 <span class="code">`code`</span> 예입니다.</span><br></pre></td></tr></table></figure>
+
+<p>이것은 인라인 코드 <code>code</code> 예입니다.</p>
+<ol start="2">
+<li>block</li>
+</ol>
+<p>블록의 경우는 backquote (`) 세개를 사용하여 감싸야 한다.<br>아래는 backquote 를 사용하여 표시할 수가 없어서 홑 따옴표로<br>표시하였지만 실제 사용시는 backquote 를 사용하여야 한다.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">s = "Python syntax highlighting"</span></span><br><span class="line"><span class="string">print s</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">"Python syntax highlighting"</span></span><br><span class="line"><span class="keyword">print</span> s</span><br></pre></td></tr></table></figure>
+
+<h2 id="링크"><a href="#링크" class="headerlink" title="링크"></a>링크</h2><p><a href="https://heropy.blog/2017/09/30/markdown/" target="_blank" rel="noopener">https://heropy.blog/2017/09/30/markdown/</a></p>
+<p><a href="https://gist.github.com/ihoneymon/652be052a0727ad59601" target="_blank" rel="noopener">https://gist.github.com/ihoneymon/652be052a0727ad59601</a></p>
+<p><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank" rel="noopener">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></p>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+</search>
