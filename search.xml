@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>discus 추가하기</title>
+    <url>/2019/11/12/discus-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<div id="content">
+</div>]]></content>
+  </entry>
+  <entry>
     <title>org-test</title>
     <url>/2019/11/12/org-test/</url>
     <content><![CDATA[<div id="content">
@@ -121,22 +127,6 @@ Then restart your hexo server.
       <tags>
         <tag>org</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>hexo-emacs</title>
-    <url>/2019/11/12/hexo-emacs/</url>
-    <content><![CDATA[<h1 id="this-is-hexo-emacs-test"><a href="#this-is-hexo-emacs-test" class="headerlink" title="this is hexo emacs test"></a>this is hexo emacs test</h1><ul>
-<li>Install</li>
-</ul><p>=hexo.el= is available on [[<a href="https://github.com/melpa/melpa][MELPA]]" target="_blank" rel="noopener">https://github.com/melpa/melpa][MELPA]]</a> now.</p><ul>
-<li>License<br>MIT</li>
-</ul><p>Copyright (c) 2014-2016 ono hiroko (kuanyui)</p><a id="more"></a>
-
-
-
-<p>Permission is hereby granted, free of charge, to any person obtaining<br>a copy of this software and associated documentation files (the<br>“Software”), to deal in the Software without restriction, including<br>without limitation the rights to use, copy, modify, merge, publish,<br>distribute, sublicense, and/or sell copies of the Software, and to<br>permit persons to whom the Software is furnished to do so, subject to<br>the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be<br>included in all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,<br>EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br>MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND<br>NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE<br>LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION<br>OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION<br>WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-]]></content>
   </entry>
   <entry>
     <title>markdown 문법</title>
