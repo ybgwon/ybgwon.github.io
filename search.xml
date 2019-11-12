@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>org-test</title>
+    <url>/2019/11/12/org-test/</url>
+    <content><![CDATA[<div id="content">
+</div>]]></content>
+  </entry>
+  <entry>
     <title>hexo-emacs</title>
     <url>/2019/11/12/hexo-emacs/</url>
     <content><![CDATA[<h1 id="this-is-hexo-emacs-test"><a href="#this-is-hexo-emacs-test" class="headerlink" title="this is hexo emacs test"></a>this is hexo emacs test</h1><ul>
