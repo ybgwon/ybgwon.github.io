@@ -1,4 +1,0 @@
-Sitemap: https://ybgwon.github.io/sitemapindex.xml
-
-User-Agent: *
-Host: ybgwon.github.io
