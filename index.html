@@ -1,0 +1,380 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>YB Gwon&#39;s ...</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
+  <meta name="author" content="" /><link rel="alternate" type="application/rss+xml+xml" href="https://ybgwon.github.io/index.xml" title="YB Gwon's ..." /><meta name="generator" content="Hugo 0.59.1" />
+    
+
+  <meta property="og:title" content="About Hugo" />
+<meta property="og:description" content="Hugo is a static site engine written in Go. 
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ybgwon.github.io/about/" />
+<meta property="article:published_time" content="2014-04-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-04-09T00:00:00+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="About Hugo"/>
+<meta name="twitter:description" content="Hugo is a static site engine written in Go. 
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub."/>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://ybgwon.github.io/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://ybgwon.github.io/">YB Gwon&rsquo;s &hellip;</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+          
+        <li><a href="https://github.com/ybgwon"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>A Hugo theme for creative and technical writing</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://ybgwon.github.io/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://ybgwon.github.io/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Hugo</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<section id="home">
+        <ul>
+          
+          <li class="first">
+            <h1><a href="https://ybgwon.github.io/posts/kernel-study-2019-11-16/" title="Kernel-Study-2019-11-16">Kernel-Study-2019-11-16</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-11-16T15:40:00&#43;09:00">Nov 16, 2019</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>주요 코드 1 2 3 4 5 6 7 8 9 10  static inline void arch_local_irq_disable(void) { asm volatile(ALTERNATIVE( &#34;msr	daifset, #2	// arch_local_irq_disable&#34;, &#34;msr_s &#34; __stringify(SYS_ICC_PMR_EL1) &#34;, %0&#34;, ARM64_HAS_IRQ_PRIO_MASKING) : : &#34;r&#34; ((unsigned long) GIC_PRIO_IRQOFF) : &#34;memory&#34;); }   DAIF 레지스터 Interrupt Mask Bit.</p>
+            
+            <a href="https://ybgwon.github.io/posts/kernel-study-2019-11-16/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/ox-hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/" title="ox-hugo 사용법">ox-hugo 사용법</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-11-16T02:36:00&#43;09:00">Nov 16, 2019</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>ox-hugo 는 emacs org 파일과 subtree를 hugo 로 publish 할 수 있다.
+다시 말하면 org 형식을 markdown 형식으로 변환하여 hugo posts
+디렉토리에 옮겨놓는다.
+auto export auto export가 동작하지 않는다. 아니다 다시 된다.</p>
+            
+            <a href="https://ybgwon.github.io/posts/ox-hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/hugo-theme/" title="hugo theme">hugo theme</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-11-15T03:28:00&#43;09:00">Nov 15, 2019</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p> cactus theme  장점
+ 깔끔하다  단점
+ 글자가 너무 작다.   </p>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/style-guide/" title="Style Guide">Style Guide</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2017-11-14T10:57:55-05:00">Nov 14, 2017</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>Headings Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Headings with Text Heading 1 Lorem ipsum dolor sit amet, adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.</p>
+            
+            <a href="https://ybgwon.github.io/posts/style-guide/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/image-content/" title="Image Style Guide">Image Style Guide</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2017-11-14T08:08:17-05:00">Nov 14, 2017</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>Veniam est eu adipisicing reprehenderit do sit sint elit sint. Tempor laborum ut dolore aliqua. Commodo eu qui sint magna veniam laborum. Ad cupidatat do proident ex veniam amet Lorem. Officia laboris aute fugiat id consequat culpa ullamco labore ea amet ad.</p>
+            
+            <a href="https://ybgwon.github.io/posts/image-content/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/creating-a-new-theme/" title="Creating a New Theme">Creating a New Theme</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2014-09-28T00:00:00Z">Sep 28, 2014</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content.</p>
+            
+            <a href="https://ybgwon.github.io/posts/creating-a-new-theme/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/goisforlovers/" title="(Hu)go Template Primer">(Hu)go Template Primer</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2014-04-02T00:00:00Z">Apr 2, 2014</time>
+        </li>
+        
+        <li>
+            
+            <em>
+                
+                    
+                    <a href="https://ybgwon.github.io/categories/development">Development</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/categories/golang">golang</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ybgwon.github.io/tags/go">#go</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/tags/golang">#golang</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/tags/templates">#templates</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/tags/themes">#themes</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/tags/development">#development</a>
+                
+            </em>
+        </li>
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website.</p>
+            
+            <a href="https://ybgwon.github.io/posts/goisforlovers/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/hugoisforlovers/" title="Getting Started with Hugo">Getting Started with Hugo</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2014-04-02T00:00:00Z">Apr 2, 2014</time>
+        </li>
+        
+        <li>
+            
+            <em>
+                
+                    
+                    <a href="https://ybgwon.github.io/categories/development">Development</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/categories/golang">golang</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ybgwon.github.io/tags/go">#go</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/tags/golang">#golang</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/tags/hugo">#hugo</a>
+                
+                    , 
+                    <a href="https://ybgwon.github.io/tags/development">#development</a>
+                
+            </em>
+        </li>
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
+Save it somewhere specific as we will be using it in the next step.</p>
+            
+            <a href="https://ybgwon.github.io/posts/hugoisforlovers/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/migrate-from-jekyll/" title="Migrate to Hugo from Jekyll">Migrate to Hugo from Jekyll</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2014-03-10T00:00:00Z">Mar 10, 2014</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static.</p>
+            
+            <a href="https://ybgwon.github.io/posts/migrate-from-jekyll/"></a>
+            
+          </li>
+          
+          <li >
+            <h1><a href="https://ybgwon.github.io/posts/capture-test/" title="capture test">capture test</a></h1>
+            <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="0001-01-01T00:00:00Z">Jan 1, 0001</time>
+        </li>
+        
+
+        
+
+        <li></li>
+    </ul>
+</aside>
+
+            <p>org capture 테스트
+capture에서 hugo 로 연결되어 블로그 포스팅 가능하도록 설정하는예이다.
+todo 엔트리에 추가 하는 것이 맞는 것일까?
+방법 1 기존 org 템플릿에 PROPERTIES 부분만 추가 되도록 한다.
+방법 2 ox-hugo 사이트에 나온 것 처럼 todo 엔트리에 추가한다.</p>
+            
+            <a href="https://ybgwon.github.io/posts/capture-test/"></a>
+            
+          </li>
+          
+        </ul>
+      </section>
+
+
+
+</main>
+    <footer>
+        <h6>Copyright &copy; 2019 - ybgwon |
+             <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://ybgwon.github.ioindex.xml"> </a></h6>
+    </footer>
+</div>
+<script src="https://ybgwon.github.io/js/scripts.js"></script>
+
+</body>
+
+</html>
+
