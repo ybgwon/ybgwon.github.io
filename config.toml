@@ -12,17 +12,17 @@ pygmentsCodeFences = true
 disqusShortname = "ybgwon"
 
 [author]
-    name = ""
+    name = "ybgwon"
     github = "ybgwon"
-    gitlab = ""
-    linkedin = ""
-    facebook = ""
-    twitter = ""
-    instagram = ""
+    # gitlab = ""
+    # linkedin = ""
+    # facebook = ""
+    # twitter = ""
+    # instagram = ""
 
 [params]
-    tagline = "A Hugo theme for creative and technical writing"
-    description = "Kiera: A Hugo theme for creative and technical writing."
+    tagline = "Personal Blog for creative and technical writing"
+    description = "YB Gwon's blog for creative and technical writing."
     #images = [""] #This is used for opengraph/twitter cards.
     customCSS = []  #Optional Customised CSS
     #favicon = ""
