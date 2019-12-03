@@ -131,3 +131,10 @@ github action을 사용하면 hugo 소스만 관리하면 build는 자동화 할
     Organization 일 경우다.  
     src 브랜치에 hugo src를 두고 github에 변경사항을 push 하면  
     github action에 의해 master 브랜치에 publish 되는 구조다.
+
+
+### <span class="section-num">8.1</span> 참조 {#참조}
+
+<https://github.com/peaceiris/actions-hugo>  
+[gohugo.io](https://discourse.gohugo.io/t/deploy-hugo-project-to-github-pages-with-github-actions/20725)  
+<https://blog.kye.dev/hugo-github-pages-actions/>
