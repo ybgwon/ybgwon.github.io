@@ -112,16 +112,14 @@ build-deploy:
 runs-on: ubuntu&lt;span style="color:#ae81ff">-18.04&lt;/span>
 steps:
 ​ - uses: actions/checkout@master
+with:
+submodules: &lt;span style="color:#66d9ef">true&lt;/span>
 ​
 - name: Setup Hugo
 uses: peaceiris/actions-hugo@v2&lt;span style="color:#ae81ff">.2&lt;/span>&lt;span style="color:#ae81ff">.0&lt;/span>
 with:
 hugo-version: &lt;span style="color:#e6db74">&amp;#39;0.59.1&amp;#39;&lt;/span>
 extended: &lt;span style="color:#66d9ef">true&lt;/span>
-​
-- name: Prepare Hugo
-run: &lt;span style="color:#e6db74">|
-&lt;/span>&lt;span style="color:#e6db74"> &lt;/span>&lt;span style="color:#e6db74"> &lt;/span>&lt;span style="color:#e6db74">git submodule sync &amp;amp;&amp;amp; git submodule update --init &lt;/span>
 ​
 - name: Build
 run: hugo --gc --minify --cleanDestinationDir

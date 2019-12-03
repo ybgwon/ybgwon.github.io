@@ -30,16 +30,14 @@ jobs:
     runs-on: ubuntu<span style=color:#ae81ff>-18.04</span>
     steps:
 ​    - uses: actions/checkout@master
+      with:
+    submodules: <span style=color:#66d9ef>true</span>
 ​
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2<span style=color:#ae81ff>.2</span><span style=color:#ae81ff>.0</span>
       with:
    hugo-version: <span style=color:#e6db74>&#39;0.59.1&#39;</span>
    extended: <span style=color:#66d9ef>true</span>
-​
-    - name: Prepare Hugo
-      run: <span style=color:#e6db74>|
-</span><span style=color:#e6db74>    </span><span style=color:#e6db74> </span><span style=color:#e6db74>git submodule sync &amp;&amp; git submodule update --init        </span>
 ​
     - name: Build
       run: hugo --gc --minify --cleanDestinationDir
