@@ -106,16 +106,14 @@ github action을 사용하면 hugo 소스만 관리하면 build는 자동화 할
         runs-on: ubuntu-18.04
         steps:
     ​    - uses: actions/checkout@master
+          with:
+    	submodules: true
     ​
         - name: Setup Hugo
           uses: peaceiris/actions-hugo@v2.2.0
           with:
        hugo-version: '0.59.1'
        extended: true
-    ​
-        - name: Prepare Hugo
-          run: |
-         git submodule sync && git submodule update --init        
     ​
         - name: Build
           run: hugo --gc --minify --cleanDestinationDir
