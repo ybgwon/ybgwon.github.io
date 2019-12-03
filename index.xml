@@ -13,7 +13,7 @@
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arch_local_irq_disable&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
 {
 &lt;span style=&#34;color:#66d9ef&#34;&gt;asm&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;volatile&lt;/span&gt;(ALTERNATIVE(
@@ -46,18 +46,7 @@ ARM64의 경우 ARMv8.1 코드와 ARMv8.2 코드를 준비해두고 부트업시
 cpu capabilities(features)를 확인하여 가능하면 성능이 더 좋은&lt;br /&gt;
 ARMv8.2 코드로 replacement 하도록 사용한다.&lt;/p&gt;
 &lt;h2 id=&#34;asm-volatile-사용법&#34;&gt;asm volatile 사용법&lt;/h2&gt;
-&lt;p&gt;kernel 코드에서 자주 나오는 inline asembly이다&lt;/p&gt;</description></item><item><title>hugo theme</title><link>/posts/hugo-theme/</link><pubDate>Fri, 15 Nov 2019 03:28:00 +0900</pubDate><guid>/posts/hugo-theme/</guid><description>
-&lt;h2 id=&#34;cactus-theme&#34;&gt;cactus theme&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;장점&lt;br /&gt;
-&lt;ul&gt;
-&lt;li&gt;깔끔하다&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;단점&lt;br /&gt;
-&lt;ul&gt;
-&lt;li&gt;글자가 너무 작다.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>hugo 사용법</title><link>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</link><pubDate>Thu, 14 Nov 2019 00:00:00 +0900</pubDate><guid>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</guid><description>
+&lt;p&gt;kernel 코드에서 자주 나오는 inline asembly이다&lt;/p&gt;</description></item><item><title>hugo 사용법</title><link>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</link><pubDate>Thu, 14 Nov 2019 00:00:00 +0900</pubDate><guid>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</guid><description>
 &lt;h2 id=&#34;설치&#34;&gt;&lt;span class=&#34;section-num&#34;&gt;1&lt;/span&gt; 설치&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;$ brew install hugo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;사이트-생성&#34;&gt;&lt;span class=&#34;section-num&#34;&gt;2&lt;/span&gt; 사이트 생성&lt;/h2&gt;
