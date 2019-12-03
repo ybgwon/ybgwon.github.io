@@ -136,7 +136,11 @@ Organization 일 경우다.&lt;br>
 src 브랜치에 hugo src를 두고 github에 변경사항을 push 하면&lt;br>
 github action에 의해 master 브랜치에 publish 되는 구조다.&lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>Style Guide</title><link>/posts/style-guide/</link><pubDate>Tue, 14 Nov 2017 10:57:55 -0500</pubDate><guid>/posts/style-guide/</guid><description>&lt;h1 id="headings">Headings&lt;/h1>
+&lt;/ol>
+&lt;h3 id="참조">&lt;!-- raw HTML omitted -->8.1&lt;!-- raw HTML omitted --> 참조&lt;/h3>
+&lt;p>&lt;a href="https://github.com/peaceiris/actions-hugo">https://github.com/peaceiris/actions-hugo&lt;/a>&lt;br>
+&lt;a href="https://discourse.gohugo.io/t/deploy-hugo-project-to-github-pages-with-github-actions/20725">gohugo.io&lt;/a>&lt;br>
+&lt;a href="https://blog.kye.dev/hugo-github-pages-actions/">https://blog.kye.dev/hugo-github-pages-actions/&lt;/a>&lt;/p></description></item><item><title>Style Guide</title><link>/posts/style-guide/</link><pubDate>Tue, 14 Nov 2017 10:57:55 -0500</pubDate><guid>/posts/style-guide/</guid><description>&lt;h1 id="headings">Headings&lt;/h1>
 &lt;h1 id="heading-1">Heading 1&lt;/h1>
 &lt;h2 id="heading-2">Heading 2&lt;/h2>
 &lt;h3 id="heading-3">Heading 3&lt;/h3>
