@@ -1,6 +1,6 @@
 baseurl = "/"
 title = "YB Gwon's ..."
-copyright = "Copyright &copy; 2019 - Author Name"
+copyright = "Copyright &copy; 2019 - ybgwon"
 canonifyurls = true
 theme = "kiera"
 
