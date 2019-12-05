@@ -1,19 +1,5 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>golang on YB Gwon's ...</title><link>/categories/golang/</link><description>Recent content in golang on YB Gwon's ...</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright &amp;copy; 2019 - ybgwon</copyright><lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="/categories/golang/index.xml" rel="self" type="application/rss+xml"/><item><title>Kernel-Study-2019-11-16</title><link>/posts/kernel-study-2019-11-16/</link><pubDate>Sat, 16 Nov 2019 15:40:00 +0900</pubDate><guid>/posts/kernel-study-2019-11-16/</guid><description>&lt;h2 id="주요-코드">주요 코드&lt;/h2>
-&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
-&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-C" data-lang="C">&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">inline&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">arch_local_irq_disable&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>)
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-C" data-lang="C">&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">inline&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">arch_local_irq_disable&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>)
 {
 &lt;span style="color:#66d9ef">asm&lt;/span> &lt;span style="color:#66d9ef">volatile&lt;/span>(ALTERNATIVE(
 &lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">msr daifset, #2 // arch_local_irq_disable&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>,
@@ -22,10 +8,8 @@ ARM64_HAS_IRQ_PRIO_MASKING)
 &lt;span style="color:#f92672">:&lt;/span>
 &lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">r&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> ((&lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>) GIC_PRIO_IRQOFF)
 &lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">memory&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
-}&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
-&lt;h2 id="daif-레지스터">DAIF 레지스터&lt;/h2>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="daif-레지스터">DAIF 레지스터&lt;/h2>
 &lt;p>Interrupt Mask Bit. interrupt mask bits에 억세스 할 수 있도록 한다.&lt;br>
 ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) - C4.3.2&lt;/p>
 &lt;figure>&lt;a href="/images/daif-1.png">
@@ -47,7 +31,85 @@ ARM64의 경우 ARMv8.1 코드와 ARMv8.2 코드를 준비해두고 부트업시
 cpu capabilities(features)를 확인하여 가능하면 성능이 더 좋은&lt;br>
 ARMv8.2 코드로 replacement 하도록 사용한다.&lt;/p>
 &lt;h2 id="asm-volatile-사용법">asm volatile 사용법&lt;/h2>
-&lt;p>kernel 코드에서 자주 나오는 inline asembly이다&lt;/p></description></item><item><title>hugo 사용법</title><link>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</link><pubDate>Thu, 14 Nov 2019 00:00:00 +0900</pubDate><guid>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</guid><description>&lt;h2 id="설치">&lt;!-- raw HTML omitted -->1&lt;!-- raw HTML omitted --> 설치&lt;/h2>
+&lt;p>kernel 코드에서 자주 나오는 inline asembly이다&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">__asm__ &lt;span style="color:#a6e22e">__volatile__&lt;/span> (asms : output : input : clobber);
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>asm&lt;br>
+다음에 나오는 것이 인라인 어샘블리 임을 나타낸다&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>volatile&lt;br>
+최적화를 하지 않는다.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>asms&lt;br>
+따옴표로 둘러싸인 어셈블리 코드. %x 와 같은 형태로 input, output&lt;br>
+파라메터 사용&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>output&lt;br>
+결과값을 출력하는 변수. 쉼표로 구분&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>input&lt;br>
+인라인 어셈블리 코드에 넘겨주는 파라메터&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>clobber&lt;br>
+값이 바뀌는 레지스터. 각 변수는 쉼표로 구분되고 각각을 따옴표로 감싼다.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>output input clobber 는 마지막이 없으면 앞의 &amp;lsquo;:&amp;lsquo;를 생략할 수있으나 중간에 것이 없으면 반드시 콜론을 표기 해야 한다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-asm" data-lang="asm">&lt;span style="color:#75715e">#include &amp;lt;stdio.h&amp;gt;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+&lt;span style="color:#a6e22e">int&lt;/span> &lt;span style="color:#66d9ef">main&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>)
+&lt;span style="color:#960050;background-color:#1e0010">{&lt;/span>
+&lt;span style="color:#a6e22e">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">a&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">=&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>&lt;span style="color:#75715e">;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">b&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">=&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>&lt;span style="color:#75715e">;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">sum&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#75715e">;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+&lt;span style="color:#a6e22e">__asm__&lt;/span>(&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#66d9ef">addq&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">%&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#960050;background-color:#1e0010">%&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> : &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">=&lt;/span>&lt;span style="color:#66d9ef">r&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> (&lt;span style="color:#66d9ef">sum&lt;/span>) : &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#66d9ef">r&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> (&lt;span style="color:#66d9ef">a&lt;/span>), &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> (&lt;span style="color:#66d9ef">b&lt;/span>))&lt;span style="color:#75715e">;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">printf&lt;/span>(&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#66d9ef">a&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">+&lt;/span> &lt;span style="color:#66d9ef">b&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">=&lt;/span> %lu&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#66d9ef">n&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sum&lt;/span>)&lt;span style="color:#75715e">;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#75715e">;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>__asm__(&amp;ldquo;addq %1,%2&amp;rdquo; : &amp;ldquo;=r&amp;rdquo; (sum) : &amp;ldquo;r&amp;rdquo; (a), &amp;ldquo;0&amp;rdquo; (b));&lt;br>
+위 코드에서 asm 부분만 따로 떼어 내서 분석해 보면&lt;/p>
+&lt;h3 id="어셈블리-코드">어셈블리 코드&lt;/h3>
+&lt;p>&amp;ldquo;addq %1,%2&amp;rdquo;&lt;br>
+%1,%2 는 output operands 부터 좌측에서 순서대로 0번 부터 매겨지는레지스터 변수의 순서이다.&lt;br>
+위의 경우는 sum 부분의 레지스터가 0번이다. 그리고 a는 1, b는 2 번순으로 된다. b의 경우는 다시 &amp;ldquo;0&amp;quot;으로 표기하여 output 의 0번째&lt;br>
+sum 부분 레지스터를 사용하게 되어 sum 부분 레지스터는 재사용하게 된다.&lt;/p>
+&lt;h3 id="input-operands--입력-인수--and-output-operands--출력-인수">Input Operands(입력 인수) &amp;amp; Output Operands(출력 인수)&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>형식&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">[ [asmSymbolicName] ] constraint (C-expression)
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h4 id="asmsymbolicname">asmSymbolicName&lt;/h4>
+&lt;p>생략 가능하고 지정하는 경우 %0, %1, …과 같이 인수의 순번을사용하는 대신 심볼명을 사용할 수도 있다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-asm" data-lang="asm">&lt;span style="color:#a6e22e">asm&lt;/span> (&lt;span style="color:#960050;background-color:#1e0010">“&lt;/span>&lt;span style="color:#66d9ef">add&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">%&lt;/span>[&lt;span style="color:#66d9ef">tmp&lt;/span>], &lt;span style="color:#75715e">#2” : [tmp] “=r” (tmp));
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="constraint">constraint&lt;/h4>
+&lt;p>&amp;ldquo;=r&amp;rdquo; 또는 &amp;ldquo;0&amp;rdquo;&lt;/p>
+&lt;p>&lt;code>=r&lt;/code> 에서 &lt;code>=&lt;/code> 은 modifier 가 되고 r이 일반 레지스터를나타내는 contraint 이다.&lt;/p>
+&lt;ol>
+&lt;li>&amp;lsquo;r&amp;rsquo; - 일반 레지스터&lt;/li>
+&lt;li>&amp;lsquo;m&amp;rsquo; - 유효 메모리 주소&lt;/li>
+&lt;li>&amp;lsquo;[digits]&amp;rsquo; - Output Operands에서 숫자 번째 항목&lt;/li>
+&lt;/ol>
+&lt;h4 id="modifier">modifier&lt;/h4>
+&lt;ol>
+&lt;li>&amp;lsquo;=&amp;rsquo; - 쓰기 전용&lt;/li>
+&lt;li>&amp;lsquo;+&amp;rsquo; - 읽기 쓰기&lt;/li>
+&lt;li>&amp;lsquo;&amp;amp;&amp;rsquo; - OutputOperands에서 레지스터 할당 순서를 먼저 할 수있도록 요청.&lt;br>
+보통 input operands에 레지스터를 할당하고 그 후&lt;br>
+output operands의 레지스터를 사용하기 때문에 input operands에서사용했던 레지스터를 output operands 레지스터로 배치하는경우도 생기는데 그러면서 문제가 될 수 있는 곳에 사용&lt;/li>
+&lt;/ol>
+&lt;h2 id="참조">참조&lt;/h2>
+&lt;p>&lt;a href="https://wiki.kldp.org/KoreanDoc/html/EmbeddedKernel-KLDP/app3.basic.html">kldp&lt;/a>&lt;br>
+&lt;a href="https://0xax.gitbooks.io/linux-insides/content/Theory/linux-theory-3.html?q=">linux inside&lt;/a>&lt;br>
+&lt;a href="http://jake.dothome.co.kr/inline-assembly/">http://jake.dothome.co.kr/inline-assembly/&lt;/a>&lt;/p></description></item><item><title>hugo 사용법</title><link>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</link><pubDate>Thu, 14 Nov 2019 00:00:00 +0900</pubDate><guid>/posts/hugo-%EC%82%AC%EC%9A%A9%EB%B2%95/</guid><description>&lt;h2 id="설치">&lt;!-- raw HTML omitted -->1&lt;!-- raw HTML omitted --> 설치&lt;/h2>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">$ brew install hugo
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="업그레이드">&lt;!-- raw HTML omitted -->2&lt;!-- raw HTML omitted --> 업그레이드&lt;/h2>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">$ brew upgrade hugo
