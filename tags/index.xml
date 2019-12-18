@@ -1,4 +1,106 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on YB Gwon's ...</title><link>/tags/</link><description>Recent content in Tags on YB Gwon's ...</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright &amp;copy; 2019 - ybgwon</copyright><lastBuildDate>Thu, 14 Nov 2019 00:00:00 +0900</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Kernel-Study-2019-11-16</title><link>/posts/kernel-study-2019-11-16/</link><pubDate>Sat, 16 Nov 2019 15:40:00 +0900</pubDate><guid>/posts/kernel-study-2019-11-16/</guid><description>&lt;h2 id="주요-코드">주요 코드&lt;/h2>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on YB Gwon's ...</title><link>/tags/</link><description>Recent content in Tags on YB Gwon's ...</description><generator>Hugo -- gohugo.io</generator><copyright>Copyright &amp;copy; 2019 - ybgwon</copyright><lastBuildDate>Thu, 14 Nov 2019 00:00:00 +0900</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>kernel-study-2019-11-23</title><link>/posts/kernel-study-2019-11-23/</link><pubDate>Thu, 05 Dec 2019 19:37:00 +0900</pubDate><guid>/posts/kernel-study-2019-11-23/</guid><description>&lt;p>boot_cpu_init 함수 분석. 첫번째 processor 를 활성화한다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#66d9ef">void&lt;/span> __init &lt;span style="color:#a6e22e">boot_cpu_init&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>)
+{
+&lt;span style="color:#66d9ef">int&lt;/span> cpu &lt;span style="color:#f92672">=&lt;/span> smp_processor_id();
+&lt;span style="color:#75715e">/* Mark the boot cpu &amp;#34;present&amp;#34;, &amp;#34;online&amp;#34; etc for SMP and UP case */&lt;/span>
+set_cpu_online(cpu, true);
+set_cpu_active(cpu, true);
+set_cpu_present(cpu, true);
+set_cpu_possible(cpu, true);
+&lt;span style="color:#75715e">#&lt;/span>&lt;span style="color:#75715e">ifdef CONFIG_SMP&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> __boot_cpu_id &lt;span style="color:#f92672">=&lt;/span> cpu;
+&lt;span style="color:#75715e">#&lt;/span>&lt;span style="color:#75715e">endif&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="smp-processor-id">smp_processor_id&lt;/h2>
+&lt;p>percpu 변수 cpu_number 값을 매크로 함수를 통해 읽어 온다&lt;/p>
+&lt;h3 id="cpu-number">cpu_number&lt;/h3>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#75715e">#&lt;/span>&lt;span style="color:#75715e">define raw_smp_processor_id() (*raw_cpu_ptr(&amp;amp;cpu_number))&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>raw_cpu_ptr 매크로 함수로 넘어가는 cpu_number 파라메터는아래와 같이 정의돼 있다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">DECLARE_PER_CPU_READ_MOSTLY(&lt;span style="color:#66d9ef">int&lt;/span>, cpu_number);
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>결국 아래와 같이 변환된다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#66d9ef">extern&lt;/span> __attribute__((section(.data..percpu..read_mostly)) &lt;span style="color:#66d9ef">int&lt;/span> cpu_number
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="typeof">&lt;code>__typeof__&lt;/code>&lt;/h4>
+&lt;p>변수 타입 반환 gcc 확장기능&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#66d9ef">int&lt;/span> i;
+__typeof__(i) j;
+&lt;span style="color:#75715e">/* above equals int j */&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="raw-cpu-ptr">raw_cpu_ptr&lt;/h3>
+&lt;p>매크로 함수&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#75715e">#&lt;/span>&lt;span style="color:#75715e">define raw_cpu_ptr(ptr) \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e">({ \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e"> __verify_pcpu_ptr(ptr); \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e"> arch_raw_cpu_ptr(ptr); \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e">})&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="verify-pcpu-ptr--ptr">__verify_pcpu_ptr(ptr)&lt;/h4>
+&lt;p>__CHECKER__(정적분석도구) 가 define 되어 있을때 ptr이 percpu 영역에 있는지 검사&lt;/p>
+&lt;h4 id="arch-raw-cpu-ptr--ptr">arch_raw_cpu_ptr(ptr);&lt;/h4>
+&lt;p>ptr 과 __my_cpu_offset를 매개 변수로 RELOC_HIDE 호출&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#75715e">#&lt;/span>&lt;span style="color:#75715e">define SHIFT_PERCPU_PTR(__p, __offset) \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e"> RELOC_HIDE((typeof(*(__p)) __kernel __force *)(__p), (__offset))&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>RELOC_HIDE - 컴파일러 에러 방지 위해 사용하는 매크로 함수.&lt;br>
+&lt;a href="http://studyfoss.egloos.com/5374731">http://studyfoss.egloos.com/5374731&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>return 값&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#75715e">#&lt;/span>&lt;span style="color:#75715e">define RELOC_HIDE(ptr, off) \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e">({ \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e"> unsigned long __ptr; \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e"> __asm__ (&amp;#34;&amp;#34; : &amp;#34;=r&amp;#34;(__ptr) : &amp;#34;0&amp;#34;(ptr)); \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e"> (typeof(ptr)) (__ptr + (off)); \&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e">})&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>마지막 __ptr + (off) return. 마지막 부분은 선언만 하고 있으나&lt;br>
+gcc 확장기능에 의해 return 된다&lt;br>
+gcc 확장기능 - compound statement(중괄호로 둘러싼 여러 statement)를&lt;br>
+expression으로 해석하는 기능.&lt;br>
+최종 결과는 아래와 같다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">(&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#f92672">*&lt;/span>) (&lt;span style="color:#f92672">&amp;amp;&lt;/span>cpu_number &lt;span style="color:#f92672">+&lt;/span> tpidr_el1 value)
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="set-cpu">set_cpu&lt;!-- raw HTML omitted -->online,active,present,possible&lt;!-- raw HTML omitted -->&lt;/h2>
+&lt;p>struct cpumask 형식의 __cpu&lt;!-- raw HTML omitted -->online,active,present,possible&lt;!-- raw HTML omitted -->_mask&lt;br>
+구조체의 멤버인 bits 배열에 현재 cpu 의 bit를 set 한다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#66d9ef">struct&lt;/span> cpumask __cpu_online_mask { &lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> bits[&lt;span style="color:#ae81ff">4&lt;/span>]; };
+cpumask_set_cpu(cpu, &lt;span style="color:#f92672">&amp;amp;&lt;/span>__cpu_online_mask);
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * cpu 가 129 라면 129/64 0~63, 64~127, 128,129... 순이 되고
+&lt;/span>&lt;span style="color:#75715e"> * 3번째 인덱스의 2번째 비트를 1로 set하게 되므로 bits[3]
+&lt;/span>&lt;span style="color:#75715e"> * 의 값이 2 가 된다. bits[3] 이 원래 0 이었을 경우
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+bits[&lt;span style="color:#ae81ff">3&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="set-bit--cpumask-checkcpu--cpumask-bits--dstp">set_bit(cpumask_check(cpu), cpumask_bits(dstp))&lt;/h3>
+&lt;p>setbit 함수의 경우 현재 cpu 변수와 cpumask 구조체의 포인터를가지고 결국 bits 배열에 cpu 변수를 set 하는 atomic asm 명령어를호출하게 된다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">inline&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> arch_atomic64_&lt;span style="color:#960050;background-color:#1e0010">#&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">#&lt;/span>op(&lt;span style="color:#66d9ef">long&lt;/span> i, atomic64_t &lt;span style="color:#f92672">*&lt;/span>v) \
+{ \
+&lt;span style="color:#66d9ef">register&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> x0 &lt;span style="color:#66d9ef">asm&lt;/span> (&lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">x0&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> i; \
+&lt;span style="color:#66d9ef">register&lt;/span> atomic64_t &lt;span style="color:#f92672">*&lt;/span>x1 &lt;span style="color:#a6e22e">asm&lt;/span> (&lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">x1&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> v; \
+\
+&lt;span style="color:#66d9ef">asm&lt;/span> &lt;span style="color:#a6e22e">volatile&lt;/span>(ARM64_LSE_ATOMIC_INSN(__LL_SC_ATOMIC64(op), \
+&lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74"> &lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">#&lt;/span>asm_op &lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74"> %[i], %[v]&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>) \
+&lt;span style="color:#f92672">:&lt;/span> [i] &lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">+r&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> (x0), [v] &lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">+Q&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> (v&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>counter) \
+&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#e6db74">r&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> (x1) \
+&lt;span style="color:#f92672">:&lt;/span> __LL_SC_CLOBBERS); \
+}
+ATOMIC64_OP(or, stset)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>위 inline asm 명령은 lse 기능(ARMV8.1이상)을 cpu 에서지원하느냐에 따라 LL/SC 방식이나 CAS 구현방식을 사용하는 LSE 중에&lt;br>
+ALTERNATIVE 매크로를 이용하여 atomic 명령을 선택하게 된다.&lt;/p>
+&lt;figure>&lt;a href="/images/stset.png">
+&lt;img src="/images/stset.png"/> &lt;/a>
+&lt;/figure>
+&lt;h3 id="atomic-operation">Atomic Operation&lt;/h3>
+&lt;ol>
+&lt;li>ARMv5 이하모두 UP(Uni Processor) 시스템용으로만 구현되어 있어 인터럽트를 막는 것으로 구현&lt;/li>
+&lt;li>ARMv6, ARMv7&lt;br>
+UP로 커널을 빌드하여 사용 시 인터럽트를 막는 것으로 구현&lt;br>
+SMP로 커널을 빌드하여 사용 시 LL/SC 방식으로 구현&lt;/li>
+&lt;li>ARMv8&lt;br>
+UP/SMP 가리지 않고 LL/SC 방식으로 구현&lt;/li>
+&lt;li>ARMv8.1~&lt;br>
+UP/SMP 가리지 않고 CAS 방식(LSE atomic 명령 채용)으로 구현&lt;/li>
+&lt;/ol>
+&lt;h3 id="참조">참조&lt;/h3>
+&lt;p>&lt;a href="http://jake.dothome.co.kr/atomic/">http://jake.dothome.co.kr/atomic/&lt;/a>&lt;/p></description></item><item><title>Kernel-Study-2019-11-16</title><link>/posts/kernel-study-2019-11-16/</link><pubDate>Sat, 16 Nov 2019 15:40:00 +0900</pubDate><guid>/posts/kernel-study-2019-11-16/</guid><description>&lt;h2 id="주요-코드">주요 코드&lt;/h2>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-C" data-lang="C">&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">inline&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">arch_local_irq_disable&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>)
 {
 &lt;span style="color:#66d9ef">asm&lt;/span> &lt;span style="color:#66d9ef">volatile&lt;/span>(ALTERNATIVE(
@@ -173,21 +275,21 @@ jobs:
 build-deploy:
 runs-on: ubuntu&lt;span style="color:#ae81ff">-18.04&lt;/span>
 steps:
-​ - uses: actions/checkout@master
+​ - uses: actions/checkout@v1
 with:
 submodules: &lt;span style="color:#66d9ef">true&lt;/span>
 ​
 - name: Setup Hugo
-uses: peaceiris/actions-hugo@v2&lt;span style="color:#ae81ff">.2&lt;/span>&lt;span style="color:#ae81ff">.0&lt;/span>
+uses: peaceiris/actions-hugo@v2
 with:
-hugo-version: &lt;span style="color:#e6db74">&amp;#39;0.59.1&amp;#39;&lt;/span>
+hugo-version: &lt;span style="color:#e6db74">&amp;#39;0.60.1&amp;#39;&lt;/span>
 extended: &lt;span style="color:#66d9ef">true&lt;/span>
 ​
 - name: Build
-run: hugo --gc --minify --cleanDestinationDir
+run: hugo --minify
 ​
 - name: Deploy
-uses: peaceiris/actions-gh-pages@v2&lt;span style="color:#ae81ff">.4&lt;/span>&lt;span style="color:#ae81ff">.0&lt;/span>
+uses: peaceiris/actions-gh-pages@v2&lt;span style="color:#ae81ff">.5&lt;/span>&lt;span style="color:#ae81ff">.0&lt;/span>
 env:
 ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
 PUBLISH_BRANCH: master
@@ -199,7 +301,32 @@ src 브랜치에 hugo src를 두고 github에 변경사항을 push 하면&lt;br>
 github action에 의해 master 브랜치에 publish 되는 구조다.&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h3 id="참조">&lt;!-- raw HTML omitted -->8.1&lt;!-- raw HTML omitted --> 참조&lt;/h3>
+&lt;h2 id="custom-css">&lt;!-- raw HTML omitted -->9&lt;!-- raw HTML omitted --> custom css&lt;/h2>
+&lt;p>font family 를 변경하거나 size등을 변경하려고 찾아 보았지만적당한 방법을 찾지 못했다. theme 마다 적용하는 방법이 조금씩 다른것 같다.&lt;br>
+kiera theme의 경우 font 변경 방법은 아래와 같다.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>hugo/themes/kiera/layouts/partials/header_includes.html 파일을&lt;br>
+hugo/layouts/partials/ 디렉토리에 복사하고 googleapi의 font&lt;br>
+family를 변경한다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://fonts.googleapis.com/css?family=Noto+Sans+KR|Roboto+Slab|Ruda&amp;#34; /&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Noto+Sans+KR 추가함. NanumGothic도 추가 할 수 있는 것으로 보인다.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>hugo/themes/kiera/static/css/styles.css 파일을&lt;br>
+hugo/static/css/style.css 에 복사하고 font-family 에&lt;br>
+Noto Sans KR을 추가한다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">font-family: &amp;#34;Noto Sans KR&amp;#34;, &amp;#34;Roboto Slab&amp;#34;, serif;
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>config.toml 파일에서 css 파일과 fontbody fontcode 를 지정한다.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">[params]
+customCSS = [&amp;#34;css/style.css&amp;#34;] #Optional Customised CSS
+fontbody = &amp;#39;Noto Sans KR&amp;#39;
+fontcode = &amp;#39;Roboto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h3 id="참조">&lt;!-- raw HTML omitted -->9.1&lt;!-- raw HTML omitted --> 참조&lt;/h3>
 &lt;p>&lt;a href="https://github.com/peaceiris/actions-hugo">https://github.com/peaceiris/actions-hugo&lt;/a>&lt;br>
 &lt;a href="https://discourse.gohugo.io/t/deploy-hugo-project-to-github-pages-with-github-actions/20725">gohugo.io&lt;/a>&lt;br>
 &lt;a href="https://blog.kye.dev/hugo-github-pages-actions/">https://blog.kye.dev/hugo-github-pages-actions/&lt;/a>&lt;/p></description></item><item><title>Style Guide</title><link>/posts/style-guide/</link><pubDate>Tue, 14 Nov 2017 10:57:55 -0500</pubDate><guid>/posts/style-guide/</guid><description>&lt;h1 id="headings">Headings&lt;/h1>
