@@ -105,21 +105,21 @@ github action을 사용하면 hugo 소스만 관리하면 build는 자동화 할
       build-deploy:
         runs-on: ubuntu-18.04
         steps:
-    ​    - uses: actions/checkout@master
+    ​    - uses: actions/checkout@v1
           with:
     	submodules: true
     ​
         - name: Setup Hugo
-          uses: peaceiris/actions-hugo@v2.2.0
+          uses: peaceiris/actions-hugo@v2
           with:
-       hugo-version: '0.59.1'
+       hugo-version: '0.60.1'
        extended: true
     ​
         - name: Build
-          run: hugo --gc --minify --cleanDestinationDir
+          run: hugo --minify
     ​
         - name: Deploy
-          uses: peaceiris/actions-gh-pages@v2.4.0
+          uses: peaceiris/actions-gh-pages@v2.5.0
           env:
        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
        PUBLISH_BRANCH: master
@@ -133,7 +133,38 @@ github action을 사용하면 hugo 소스만 관리하면 build는 자동화 할
     github action에 의해 master 브랜치에 publish 되는 구조다.
 
 
-### <span class="section-num">8.1</span> 참조 {#참조}
+## <span class="section-num">9</span> custom css {#custom-css}
+
+font family 를 변경하거나 size등을 변경하려고 찾아 보았지만적당한 방법을 찾지 못했다. theme 마다 적용하는 방법이 조금씩 다른것 같다.  
+kiera theme의 경우 font 변경 방법은 아래와 같다.  
+
+1.  hugo/themes/kiera/layouts/partials/header\_includes.html 파일을  
+    hugo/layouts/partials/ 디렉토리에 복사하고 googleapi의 font  
+    family를 변경한다.  
+    
+    ```text
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Roboto+Slab|Ruda" />
+    ```
+    
+    Noto+Sans+KR 추가함. NanumGothic도 추가 할 수 있는 것으로 보인다.
+2.  hugo/themes/kiera/static/css/styles.css 파일을  
+    hugo/static/css/style.css 에 복사하고 font-family 에  
+    Noto Sans KR을 추가한다.  
+    
+    ```text
+    font-family: "Noto Sans KR", "Roboto Slab", serif;
+    ```
+3.  config.toml 파일에서 css 파일과 fontbody fontcode 를 지정한다.  
+    
+    ```text
+    [params]
+        customCSS = ["css/style.css"]  #Optional Customised CSS
+        fontbody = 'Noto Sans KR'
+        fontcode = 'Roboto'
+    ```
+
+
+### <span class="section-num">9.1</span> 참조 {#참조}
 
 <https://github.com/peaceiris/actions-hugo>  
 [gohugo.io](https://discourse.gohugo.io/t/deploy-hugo-project-to-github-pages-with-github-actions/20725)  
