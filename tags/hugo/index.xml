@@ -58,17 +58,17 @@ expression으로 해석하는 기능.&lt;br>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">(&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#f92672">*&lt;/span>) (&lt;span style="color:#f92672">&amp;amp;&lt;/span>cpu_number &lt;span style="color:#f92672">+&lt;/span> tpidr_el1 value)
 &lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ul>
-&lt;h2 id="set-cpu">set_cpu&lt;!-- raw HTML omitted -->online,active,present,possible&lt;!-- raw HTML omitted -->&lt;/h2>
-&lt;p>struct cpumask 형식의 __cpu&lt;!-- raw HTML omitted -->online,active,present,possible&lt;!-- raw HTML omitted -->_mask&lt;br>
+&lt;h2 id="set-cpu-online--set-cpu-active-set-cpu-present-set-cpu-possible">set_cpu_online(set_cpu_active,set_cpu_present,set_cpu_possible)&lt;/h2>
+&lt;p>struct cpumask 형식의 __cpu_online_mask&lt;br>
 구조체의 멤버인 bits 배열에 현재 cpu 의 bit를 set 한다.&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#66d9ef">struct&lt;/span> cpumask __cpu_online_mask { &lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> bits[&lt;span style="color:#ae81ff">4&lt;/span>]; };
 cpumask_set_cpu(cpu, &lt;span style="color:#f92672">&amp;amp;&lt;/span>__cpu_online_mask);
 &lt;span style="color:#75715e">/*
 &lt;/span>&lt;span style="color:#75715e"> * cpu 가 129 라면 129/64 0~63, 64~127, 128,129... 순이 되고
-&lt;/span>&lt;span style="color:#75715e"> * 3번째 인덱스의 2번째 비트를 1로 set하게 되므로 bits[3]
-&lt;/span>&lt;span style="color:#75715e"> * 의 값이 2 가 된다. bits[3] 이 원래 0 이었을 경우
+&lt;/span>&lt;span style="color:#75715e"> * 3번째 인덱스의 2번째 비트를 1로 set하게 되므로 bits[2]
+&lt;/span>&lt;span style="color:#75715e"> * 의 값이 2 가 된다. bits[2] 이 원래 0 이었을 경우
 &lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-bits[&lt;span style="color:#ae81ff">3&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+bits[&lt;span style="color:#ae81ff">2&lt;/span>] &lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="set-bit--cpumask-checkcpu--cpumask-bits--dstp">set_bit(cpumask_check(cpu), cpumask_bits(dstp))&lt;/h3>
 &lt;p>setbit 함수의 경우 현재 cpu 변수와 cpumask 구조체의 포인터를가지고 결국 bits 배열에 cpu 변수를 set 하는 atomic asm 명령어를호출하게 된다.&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-c" data-lang="c">&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">inline&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> arch_atomic64_&lt;span style="color:#960050;background-color:#1e0010">#&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">#&lt;/span>op(&lt;span style="color:#66d9ef">long&lt;/span> i, atomic64_t &lt;span style="color:#f92672">*&lt;/span>v) \
