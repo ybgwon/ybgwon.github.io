@@ -112,9 +112,9 @@ ptr 과 \_\_my\_cpu\_offset를 매개 변수로 RELOC\_HIDE 호출
     ```
 
 
-## set\_cpu<sub>online,active,present,possible</sub> {#set-cpu}
+## set\_cpu\_online(set\_cpu\_active,set\_cpu\_present,set\_cpu\_possible) {#set-cpu-online--set-cpu-active-set-cpu-present-set-cpu-possible}
 
-struct cpumask 형식의 \_\_cpu<sub>online,active,present,possible</sub>\_mask  
+struct cpumask 형식의 \_\_cpu\_online\_mask  
 구조체의 멤버인 bits 배열에 현재 cpu 의 bit를 set 한다.  
 
 ```c
@@ -122,10 +122,10 @@ struct cpumask __cpu_online_mask { unsigned long bits[4]; };
 cpumask_set_cpu(cpu, &__cpu_online_mask);
 /*
  * cpu 가 129 라면 129/64 0~63, 64~127, 128,129... 순이 되고
- * 3번째 인덱스의 2번째 비트를 1로 set하게 되므로 bits[3]
- * 의 값이 2 가 된다. bits[3] 이 원래 0 이었을 경우
+ * 3번째 인덱스의 2번째 비트를 1로 set하게 되므로 bits[2]
+ * 의 값이 2 가 된다. bits[2] 이 원래 0 이었을 경우
  */
-bits[3] = 2;
+bits[2] == 2;
 ```
 
 
