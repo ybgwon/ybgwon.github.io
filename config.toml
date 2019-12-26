@@ -26,5 +26,5 @@ disqusShortname = "ybgwon"
     #images = [""] #This is used for opengraph/twitter cards.
     customCSS = ["css/style.css"]  #Optional Customised CSS
     #favicon = ""
-    fontbody = 'Noto Sans KR'
-    fontcode = 'Roboto'
+    #fontbody = 'Noto Sans KR'
+    #fontcode = 'Roboto'
